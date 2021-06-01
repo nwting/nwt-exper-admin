@@ -16,5 +16,11 @@ module.exports = {
   rules: {
     "no-console": process.env.NODE_ENV === "production" ? "warn" : "off",
     "no-debugger": process.env.NODE_ENV === "production" ? "warn" : "off",
+    "@typescript-eslint/explicit-module-boundary-types":["off"],
+    "@typescript-eslint/no-unused-vars": ["off"],
+    "@typescript-eslint-disable-next-line": ["off"],
+    //解决delete “cr”的问题
+    // "endOfLine": ["off"],    
+    //xxx is defined but never use
   },
 };
