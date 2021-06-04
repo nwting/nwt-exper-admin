@@ -1,5 +1,19 @@
 # nwt-exper-admin
 
+## 2021.6.4
+
+总结一下上传GitHub步骤：
+1.git add .
+2.git commit -m "nwt-exper-admin"
+3.git config --global http.sslVerify "false" //解决SSL报错问题
+4.git push -u origin master
+
+## 2021.6.3
+
+实现了基于axios和mock的匹配账号密码登录
+实现了显示登录用户的个人信息
+写好了修改个人信息和修改密码的ui，还没有实现
+
 ## 2021.5.31
 
 实现了管理员端和教师端的分页显示，基于双向绑定+路由传参
