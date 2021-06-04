@@ -1,4 +1,5 @@
-import { Menu, Role, UserInfo } from "@/role/Menu";
+import { updatelabinfoList } from "@/role/LabInfo";
+import { Menu, Role, UserInfo, Lab } from "@/role/Menu";
 import { getuserinfoList, getuserinfo } from "@/role/UserInfo";
 import axios from "axios";
 import MockAdapter from "axios-mock-adapter";
@@ -30,15 +31,16 @@ mock.onGet(path("users/{uid}/personnalinfo")).reply((c) => {
   resulVO.data = { userinfo };
   return [200, resulVO];
 });
-
+mock.onPost("updateLabList").reply((c) => {
+  const data = c.data;
+  const { newlab } = JSON.parse(data);
+  const updated = updatelabinfoList(newlab);
+  resulVO.data = { updated };
+  return [200, resulVO];
+});
 mock.onPost("login").reply((c) => {
   const data = c.data;
   const { number, password } = JSON.parse(data);
-  // if (number == "1001" && password == "123456") {
-  //   resulVO.code = 200;
-  //   const userinfo = getuserinfoList().find((h) => {
-  //     return h.id == number;
-  //   });
   const usertmp = getuserinfoList().find((h) => {
     return h.id == number;
   });

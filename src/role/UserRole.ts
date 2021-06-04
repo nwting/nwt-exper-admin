@@ -29,6 +29,16 @@ const routes: Array<RouteRecordRaw> = [
         path: "/listcourses",
         component: () => import("@/views/main/listcourses.vue"),
       },
+      {
+        props: true,
+        path: "/createlab",
+        component: () => import("@/views/main/createlab.vue"),
+      },
+      {
+        props: true,
+        path: "/listlab",
+        component: () => import("@/views/main/listlab.vue"),
+      },
     ],
   },
 
@@ -115,11 +125,11 @@ const roleList: Role[] = [
         children: [
           {
             title: "新增实验室",
-            path: "/p1",
+            path: "/createlab",
           },
           {
             title: "查看实验室",
-            path: "/p1",
+            path: "/listlab",
           },
         ],
       },

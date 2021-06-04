@@ -1,6 +1,7 @@
 import { ActionTree, createStore } from "vuex";
-import { Menu, Role, UserInfo } from "@/role/Menu";
+import { Menu, Role, UserInfo, Lab } from "@/role/Menu";
 import { getuserinfoList } from "@/role/UserInfo";
+import { getlabinfoList } from "@/role/LabInfo";
 import router from "@/router";
 import axios from "axios";
 import { ResultVO } from "@/mock";
@@ -11,6 +12,8 @@ export interface State {
   roleList?: Role[];
   userinfoList?: UserInfo[];
   userinfo: UserInfo;
+  labinfoList?: Lab[];
+  labinfo: Lab;
 }
 
 const state: State = {
@@ -18,6 +21,8 @@ const state: State = {
   roleList: [],
   userinfoList: [],
   userinfo: { id: "" },
+  labinfoList: getlabinfoList(),
+  labinfo: { id: "" },
 };
 
 const mutations = {
@@ -32,6 +37,8 @@ const mutations = {
   },
   [types.UPDATE_USER]: (state: State, data: UserInfo) =>
     (state.userinfo = data),
+  [types.UPDATE_LABLIST]: (state: State, date: Lab) =>
+    state.labinfoList?.push(date),
 };
 
 // const getters = {
@@ -41,6 +48,13 @@ const mutations = {
 const actions: ActionTree<State, State> = {
   [types.UPDATE_USER]: ({ commit }, user: UserInfo) => {
     setTimeout(() => commit(types.UPDATE_USER, user), 1000);
+  },
+  async [types.UPDATE_LABLIST]({ commit }, newlab: Lab) {
+    try {
+      const resp = await axios.post<ResultVO>("updateLabList", newlab);
+    } catch (error) {
+      //
+    }
   },
   async [types.LOGIN]({ commit }, user: UserInfo) {
     try {

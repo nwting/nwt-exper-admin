@@ -5,3 +5,5 @@ export const SET_ROLELIST = "SET_ROLELIST";
 export const SET_USERINFOLIST = "SET_USERINFOLIST";
 export const SHOW_USERINFO = "SHOW_USERINFO";
 export const UPDATE_USER = "UPDATE_USER";
+export const CREATE_LAB = "CREATE_LAB";
+export const UPDATE_LABLIST = "UPDATE_LABLIST";

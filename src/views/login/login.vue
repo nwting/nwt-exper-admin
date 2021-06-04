@@ -12,6 +12,7 @@
           <el-input
             placeholder="请输入密码"
             prefix-icon="el-icon-key"
+            type="password"
             v-model="userForm.password"
           ></el-input>
         </div>

@@ -24,7 +24,8 @@ export interface Teacher {
 }
 export interface Lab {
   id: string;
-  devicNum?: number;
+  place?: string;
+  deviceNum?: number;
   description?: string;
 }
 export interface Time {
@@ -40,4 +41,10 @@ export interface CourseInfo {
   teacher?: Teacher[];
   stuNum?: number;
   lab?: Lab[];
+}
+export interface LabOrderInfo {
+  id: string;
+  orderUser?: Teacher;
+  createTime?: string;
+  orderCourseTime?: CourseInfo.takeTime;
 }
