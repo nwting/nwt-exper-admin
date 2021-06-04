@@ -8,3 +8,36 @@ export interface Role {
   title: string;
   menulist: Menu[];
 }
+export interface UserInfo {
+  id: string | undefined;
+  pw?: string;
+  role?: string;
+  name?: string;
+  gender?: string;
+  age?: number;
+  college?: string;
+  major?: string;
+}
+export interface Teacher {
+  id: string;
+  name?: string;
+}
+export interface Lab {
+  id: string;
+  devicNum?: number;
+  description?: string;
+}
+export interface Time {
+  week?: number;
+  day?: number;
+  cth?: number;
+}
+export interface CourseInfo {
+  id: string;
+  name?: string;
+  takePeriod?: number; //节数
+  takeTime?: Time[];
+  teacher?: Teacher[];
+  stuNum?: number;
+  lab?: Lab[];
+}

@@ -11,14 +11,27 @@ const routes: Array<RouteRecordRaw> = [
     children: [
       {
         path: "",
+        props: true,
         component: () => import("@/views/main/Welcome.vue"),
       },
       {
-        path: "/p1",
-        component: () => import("@/views/main/P1.vue"),
+        props: true,
+        path: "/personnalinfo",
+        component: () => import("@/views/main/personnalinfo.vue"),
+      },
+      {
+        props: true,
+        path: "/modifypw",
+        component: () => import("@/views/main/modifypw.vue"),
+      },
+      {
+        props: true,
+        path: "/listcourses",
+        component: () => import("@/views/main/listcourses.vue"),
       },
     ],
   },
+
   {
     path: "/:pathMatch(.*)*",
     redirect: { name: "main" },
@@ -32,21 +45,47 @@ const roleList: Role[] = [
     title: "实验室管理系统——教师端",
     menulist: [
       {
-        title: "课程实验管理",
+        title: "用户管理",
         children: [
           {
-            title: "课程管理",
-            path: "/p1",
+            title: "查看个人信息",
+            path: "/personnalinfo",
           },
           {
-            title: "学生管理",
-            path: "/p1",
+            title: "修改个人密码",
+            path: "/modifypw",
           },
         ],
       },
       {
-        title: "实验室预约",
-        children: [],
+        title: "课程管理",
+        children: [
+          {
+            title: "新增课程",
+            path: "/p1",
+          },
+          {
+            title: "查看课程",
+            path: "/listcourses",
+          },
+        ],
+      },
+      {
+        title: "预约管理",
+        children: [
+          {
+            title: "预约实验室",
+            path: "/p1",
+          },
+          {
+            title: "查看预约信息",
+            path: "/p1",
+          },
+          {
+            title: "查看排期表",
+            path: "/p1",
+          },
+        ],
       },
     ],
   },
@@ -55,21 +94,43 @@ const roleList: Role[] = [
     title: "实验室管理系统——管理员端",
     menulist: [
       {
-        title: "学生管理模块",
+        title: "用户管理",
         children: [
           {
-            title: "学生管理",
+            title: "查看个人信息",
+            path: "/personnalinfo",
+          },
+          {
+            title: "修改个人密码",
             path: "/p1",
           },
           {
-            title: "课程管理",
+            title: "教师管理",
             path: "/p1",
           },
         ],
       },
       {
-        title: "课程管理模块",
-        children: [],
+        title: "实验室管理",
+        children: [
+          {
+            title: "新增实验室",
+            path: "/p1",
+          },
+          {
+            title: "查看实验室",
+            path: "/p1",
+          },
+        ],
+      },
+      {
+        title: "预约信息管理",
+        children: [
+          {
+            title: "排期表",
+            path: "/p1",
+          },
+        ],
       },
     ],
   },
