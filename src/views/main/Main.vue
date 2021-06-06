@@ -6,7 +6,11 @@
     <router-view />
   </div> -->
   <el-container style="height：1000px; border: 1px solid #eee">
-    <el-page-header icon="el-icon-arrow-left" style="background-color: #b3c0d1">
+    <el-page-header
+      icon="el-icon-arrow-left"
+      style="background-color: #b3c0d1"
+      @click="goback"
+    >
       <!-- <router-link :to="login"></router-link> -->
     </el-page-header>
     <el-header style="text-align: right; font-size: 18px">
@@ -33,6 +37,11 @@ export default defineComponent({
   props: {
     mroleNum: String,
   },
+  methods: {
+    goback() {
+      this.$router.push({ name: "login" });
+    },
+  },
   setup(props) {
     // console.log(props.mroleNum);
     const rolenum = ref(props.mroleNum);
@@ -44,6 +53,7 @@ export default defineComponent({
     const role = state.roleList?.find((x) => {
       return x.rolenum == rolenum.value;
     });
+
     return {
       rolenum,
       role,

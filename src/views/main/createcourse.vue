@@ -1,16 +1,22 @@
 <template>
   <!-- <div>{{ lab }}</div> -->
   <el-form label-width="100px" class="demo-ruleForm">
-    <el-form-item label="实验室所在楼">
+    <el-form-item label="课程名称">
       <el-input v-model="newlab.place"></el-input>
     </el-form-item>
-    <el-form-item label="实验室编号">
+    <el-form-item label="课程编号">
       <el-input v-model="newlab.id"></el-input>
     </el-form-item>
-    <el-form-item label="实验室机器数量">
+    <el-form-item label="课程学时">
       <el-input v-model="newlab.deviceNum"></el-input>
     </el-form-item>
-    <el-form-item label="描述">
+    <el-form-item label="授课教师">
+      <el-input v-model="newlab.deviceNum"></el-input>
+    </el-form-item>
+    <el-form-item label="学生数量">
+      <el-input v-model="newlab.deviceNum"></el-input>
+    </el-form-item>
+    <el-form-item label="备注">
       <el-input type="textarea" v-model="newlab.description"></el-input>
     </el-form-item>
     <el-form-item>

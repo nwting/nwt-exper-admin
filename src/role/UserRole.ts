@@ -39,6 +39,14 @@ const routes: Array<RouteRecordRaw> = [
         path: "/listlab",
         component: () => import("@/views/main/listlab.vue"),
       },
+      {
+        path: "/schedule",
+        component: () => import("@/views/main/schedule.vue"),
+      },
+      {
+        path: "/orderlab",
+        component: () => import("@/views/main/orderlab.vue"),
+      },
     ],
   },
 
@@ -85,7 +93,7 @@ const roleList: Role[] = [
         children: [
           {
             title: "预约实验室",
-            path: "/p1",
+            path: "/orderlab",
           },
           {
             title: "查看预约信息",
@@ -93,7 +101,7 @@ const roleList: Role[] = [
           },
           {
             title: "查看排期表",
-            path: "/p1",
+            path: "/schedule",
           },
         ],
       },
@@ -138,7 +146,7 @@ const roleList: Role[] = [
         children: [
           {
             title: "排期表",
-            path: "/p1",
+            path: "/schedule",
           },
         ],
       },

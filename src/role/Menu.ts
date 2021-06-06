@@ -27,6 +27,8 @@ export interface Lab {
   place?: string;
   deviceNum?: number;
   description?: string;
+  isoccupyed?: boolean;
+  occupyedTime?: Time[];
 }
 export interface Time {
   week?: number;
@@ -41,10 +43,29 @@ export interface CourseInfo {
   teacher?: Teacher[];
   stuNum?: number;
   lab?: Lab[];
+  otherInfo?: string;
 }
 export interface LabOrderInfo {
   id: string;
+  orderLabId?: string;
   orderUser?: Teacher;
   createTime?: string;
-  orderCourseTime?: CourseInfo.takeTime;
+  orderCourseTime?: Time[];
+  orderCourse?: CourseInfo;
+  remainDev?: number;
+  isOrdered?: false;
+}
+export interface CthToCourse {
+  cth?: number;
+  course?: CourseInfo;
+}
+export interface DayToOrderInfo {
+  day?: number;
+  info?: CthToCourse[];
+}
+export interface OrderedInfo {
+  id: string; //scheme中每一个教室每一行（每一周）对应一个id，
+  labId?: string;
+  week?: number; //周次
+  orderInfo?: DayToOrderInfo[];
 }

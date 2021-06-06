@@ -13,8 +13,8 @@ import { Menu, Role, UserInfo } from "./Menu";
 //规定role=“1”--教师；role=“2”--管理员
 const userinfoList: UserInfo[] = [
   {
-    id: "1001",
-    pw: "123456",
+    id: "1",
+    pw: "1",
     role: "1",
     name: "王老师",
     gender: "男",

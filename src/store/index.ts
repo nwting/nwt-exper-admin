@@ -1,11 +1,12 @@
 import { ActionTree, createStore } from "vuex";
-import { Menu, Role, UserInfo, Lab } from "@/role/Menu";
+import { Menu, Role, UserInfo, Lab, OrderedInfo } from "@/role/Menu";
 import { getuserinfoList } from "@/role/UserInfo";
 import { getlabinfoList } from "@/role/LabInfo";
 import router from "@/router";
 import axios from "axios";
 import { ResultVO } from "@/mock";
 import * as types from "./VuexTypes";
+import { getorderedinfoList } from "@/role/OrderedInfo";
 
 export interface State {
   role?: string | null;
@@ -14,6 +15,7 @@ export interface State {
   userinfo: UserInfo;
   labinfoList?: Lab[];
   labinfo: Lab;
+  orderedinfoList?: OrderedInfo[];
 }
 
 const state: State = {
@@ -23,6 +25,7 @@ const state: State = {
   userinfo: { id: "" },
   labinfoList: getlabinfoList(),
   labinfo: { id: "" },
+  orderedinfoList: getorderedinfoList(),
 };
 
 const mutations = {
