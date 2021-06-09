@@ -35,14 +35,20 @@ export interface Time {
   day?: number;
   cth?: number;
 }
+export interface TakeLabInfo {
+  week?: number;
+  day?: number;
+  cth?: number;
+  labid?: string;
+}
 export interface CourseInfo {
   id: string;
   name?: string;
   takePeriod?: number; //节数
-  takeTime?: Time[];
-  teacher?: Teacher[];
+  //takeTime?: Time[];
+  teacher?: Teacher;
   stuNum?: number;
-  lab?: Lab[];
+  takelabInfo?: TakeLabInfo[];
   otherInfo?: string;
 }
 export interface LabOrderInfo {
@@ -64,8 +70,16 @@ export interface DayToOrderInfo {
   info?: CthToCourse[];
 }
 export interface OrderedInfo {
-  id: string; //scheme中每一个教室每一行（每一周）对应一个id，
+  //id: string; //scheme中每一个教室每一行（每一周）对应一个id，
   labId?: string;
   week?: number; //周次
   orderInfo?: DayToOrderInfo[];
+}
+export interface OrderForm {
+  labid?: string;
+  week?: [];
+  day?: [];
+  cth?: [];
+  stunum?: number;
+  courseid?: string;
 }

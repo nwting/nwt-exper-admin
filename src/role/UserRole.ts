@@ -26,6 +26,11 @@ const routes: Array<RouteRecordRaw> = [
       },
       {
         props: true,
+        path: "/createcourse",
+        component: () => import("@/views/main/createcourse.vue"),
+      },
+      {
+        props: true,
         path: "/listcourses",
         component: () => import("@/views/main/listcourses.vue"),
       },
@@ -46,6 +51,10 @@ const routes: Array<RouteRecordRaw> = [
       {
         path: "/orderlab",
         component: () => import("@/views/main/orderlab.vue"),
+      },
+      {
+        path: "/test",
+        component: () => import("@/views/main/test.vue"),
       },
     ],
   },
@@ -71,7 +80,7 @@ const roleList: Role[] = [
           },
           {
             title: "修改个人密码",
-            path: "/modifypw",
+            path: "/test",
           },
         ],
       },
@@ -80,7 +89,7 @@ const roleList: Role[] = [
         children: [
           {
             title: "新增课程",
-            path: "/p1",
+            path: "/createcourse",
           },
           {
             title: "查看课程",
@@ -97,7 +106,7 @@ const roleList: Role[] = [
           },
           {
             title: "查看预约信息",
-            path: "/p1",
+            path: "/test",
           },
           {
             title: "查看排期表",

@@ -34,11 +34,13 @@ export default {
       id: "",
     });
     const createLab = () => {
-      store.commit(UPDATE_LABLIST, {
+      store.dispatch(UPDATE_LABLIST, {
         id: newlab.value.id,
         place: newlab.value.place,
         deviceNum: newlab.value.deviceNum,
         description: newlab.value.description,
+        isoccupyed: false,
+        occupyedTime: [],
       } as Lab);
       console.log("createLab");
     };

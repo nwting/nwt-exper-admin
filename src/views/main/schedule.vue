@@ -8,10 +8,7 @@
       sortable
       width="180"
       column-key="labId"
-      :filters="[
-        { text: '911', value: '911' },
-        { text: '921', value: '921' },
-      ]"
+      :filters="labfilter"
       :filter-method="filterHandler"
     ></el-table-column>
     <el-table-column
@@ -38,7 +35,7 @@
 import { State } from "@/store";
 import { Store, useStore } from "vuex";
 import { computed, ref } from "vue";
-import { OrderedInfo } from "@/role/Menu";
+import { OrderedInfo, Lab } from "@/role/Menu";
 
 function dealdata(o: OrderedInfo[] | undefined) {
   if (o != undefined) {
@@ -127,13 +124,29 @@ function dealdata(o: OrderedInfo[] | undefined) {
     console.log("go else!");
   }
 }
-
+function setlabfilter(labinfoList: Lab[] | undefined) {
+  const arr: { text: string; value: string }[] = [];
+  if (labinfoList != undefined) {
+    labinfoList.forEach((x) => {
+      const item = {
+        text: x.id,
+        value: x.id,
+      };
+      arr.push(item);
+    });
+    return arr;
+  }
+}
 export default {
-  data() {
+  setup() {
     const store: Store<State> = useStore();
     const orderedinfoList = computed(() => store.state.orderedinfoList);
+    const labinfoList = computed(() => store.state.labinfoList);
     //  const orderedlab = computed(() => this.$data);
+    console.log(orderedinfoList);
     const list = dealdata(orderedinfoList.value);
+    const labfilter = setlabfilter(labinfoList.value);
+
     const datefilter = [
       { text: "1", value: "1" },
       { text: "2", value: "2" },
@@ -154,33 +167,90 @@ export default {
       { text: "17", value: "17" },
       { text: "18", value: "18" },
     ];
+    //  formatter(row: any, column: any) {
+    //   return row.address;
+    // },
+    // filterTag(value: any, row: any) {
+    //   return row.tag === value;
+    // },
+    // filterHandler(value: any, row: any, column: any) {
+    //   const property = column["property"];
+    //   return row[property] === value;
+    // },
+    const formatter = (row: any, column: any) => {
+      return row.address;
+    };
+    const filterTag = (value: any, row: any) => {
+      return row.tag === value;
+    };
+    const filterHandler = (value: any, row: any, column: any) => {
+      const property = column["property"];
+      return row[property] === value;
+    };
     return {
+      formatter,
+      filterTag,
+      filterHandler,
       orderedinfoList,
       list,
       datefilter,
+      labinfoList,
+      labfilter,
     };
   },
-  methods: {
-    // resetDateFilter() {
-    //   //let el: any = this.$refs;
-    //   //el.filterTable.clearFilter("lab");
-    //   console.log(this);
-    // },
-    // clearFilter() {
-    //   //let el: any = this.$refs;
-    //   //el.filterTable.clearFilter();
-    // },
-    formatter(row: any, column: any) {
-      return row.address;
-    },
-    filterTag(value: any, row: any) {
-      return row.tag === value;
-    },
-    filterHandler(value: any, row: any, column: any) {
-      const property = column["property"];
-      return row[property] === value;
-    },
-  },
+  // data() {
+  //   const store: Store<State> = useStore();
+  //   const orderedinfoList = computed(() => store.state.orderedinfoList);
+  //   //  const orderedlab = computed(() => this.$data);
+
+  //   const list = dealdata(orderedinfoList.value);
+  //   const datefilter = [
+  //     { text: "1", value: "1" },
+  //     { text: "2", value: "2" },
+  //     { text: "3", value: "3" },
+  //     { text: "4", value: "4" },
+  //     { text: "5", value: "5" },
+  //     { text: "6", value: "6" },
+  //     { text: "7", value: "7" },
+  //     { text: "8", value: "8" },
+  //     { text: "9", value: "9" },
+  //     { text: "10", value: "10" },
+  //     { text: "11", value: "11" },
+  //     { text: "12", value: "12" },
+  //     { text: "13", value: "13" },
+  //     { text: "14", value: "14" },
+  //     { text: "15", value: "15" },
+  //     { text: "16", value: "16" },
+  //     { text: "17", value: "17" },
+  //     { text: "18", value: "18" },
+  //   ];
+  //   return {
+  //     orderedinfoList,
+  //     list,
+  //     datefilter,
+  //   };
+  // },
+  // methods: {
+  //   // resetDateFilter() {
+  //   //   //let el: any = this.$refs;
+  //   //   //el.filterTable.clearFilter("lab");
+  //   //   console.log(this);
+  //   // },
+  //   // clearFilter() {
+  //   //   //let el: any = this.$refs;
+  //   //   //el.filterTable.clearFilter();
+  //   // },
+  //   formatter(row: any, column: any) {
+  //     return row.address;
+  //   },
+  //   filterTag(value: any, row: any) {
+  //     return row.tag === value;
+  //   },
+  //   filterHandler(value: any, row: any, column: any) {
+  //     const property = column["property"];
+  //     return row[property] === value;
+  //   },
+  // },
 };
 </script>
 

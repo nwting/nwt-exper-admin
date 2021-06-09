@@ -1,87 +1,91 @@
 <template>
   <el-form
-    :model="ruleForm"
-    :rules="rules"
-    ref="ruleForm"
+    :model="order"
+    :rules="orderrules"
+    ref="order.value"
     label-width="100px"
     class="demo-ruleForm"
   >
-    <el-form-item label="实验课程编号" prop="name">
-      <el-input v-model="ruleForm.name"></el-input>
+    <el-form-item label="实验课程编号" prop="courseid">
+      <el-input v-model="order.courseid"></el-input>
     </el-form-item>
 
-    <el-form-item label="实验室编号" prop="type">
-      <el-checkbox-group v-model="ruleForm.type">
-        <el-checkbox
+    <el-form-item label="实验室编号" prop="labid">
+      <el-select v-model="order.labid">
+        <el-option
           v-for="(l, index) in lablist"
           :key="index"
           :label="`${l.id}`"
-          name="type"
-        ></el-checkbox>
+          :value="`${l.id}`"
+          name="labid"
+        ></el-option>
+      </el-select>
+    </el-form-item>
+
+    <el-form-item label="周次" prop="week">
+      <el-checkbox-group v-model="order.week">
+        <el-checkbox label="1" name="week"></el-checkbox>
+        <el-checkbox label="2" name="week"></el-checkbox>
+        <el-checkbox label="3" name="week"></el-checkbox>
+        <el-checkbox label="4" name="week"></el-checkbox>
+        <el-checkbox label="5" name="week"></el-checkbox>
+        <el-checkbox label="6" name="week"></el-checkbox>
+        <el-checkbox label="7" name="week"></el-checkbox>
+        <el-checkbox label="8" name="week"></el-checkbox>
+        <el-checkbox label="9" name="week"></el-checkbox>
+        <el-checkbox label="10" name="week"></el-checkbox>
+        <el-checkbox label="11" name="week"></el-checkbox>
+        <el-checkbox label="12" name="week"></el-checkbox>
+        <el-checkbox label="13" name="week"></el-checkbox>
+        <el-checkbox label="14" name="week"></el-checkbox>
+        <el-checkbox label="15" name="week"></el-checkbox>
+        <el-checkbox label="16" name="week"></el-checkbox>
+        <el-checkbox label="17" name="week"></el-checkbox>
+        <el-checkbox label="18" name="week"></el-checkbox>
       </el-checkbox-group>
     </el-form-item>
 
-    <el-form-item label="周次" prop="type">
-      <el-checkbox-group v-model="ruleForm.type">
-        <el-checkbox label="1" name="type"></el-checkbox>
-        <el-checkbox label="2" name="type"></el-checkbox>
-        <el-checkbox label="3" name="type"></el-checkbox>
-        <el-checkbox label="4" name="type"></el-checkbox>
-        <el-checkbox label="5" name="type"></el-checkbox>
-        <el-checkbox label="6" name="type"></el-checkbox>
-        <el-checkbox label="7" name="type"></el-checkbox>
-        <el-checkbox label="8" name="type"></el-checkbox>
-        <el-checkbox label="9" name="type"></el-checkbox>
-        <el-checkbox label="10" name="type"></el-checkbox>
-        <el-checkbox label="11" name="type"></el-checkbox>
-        <el-checkbox label="12" name="type"></el-checkbox>
-        <el-checkbox label="13" name="type"></el-checkbox>
-        <el-checkbox label="14" name="type"></el-checkbox>
-        <el-checkbox label="15" name="type"></el-checkbox>
-        <el-checkbox label="16" name="type"></el-checkbox>
-        <el-checkbox label="17" name="type"></el-checkbox>
-        <el-checkbox label="18" name="type"></el-checkbox>
+    <el-form-item label="星期" prop="day">
+      <el-checkbox-group v-model="order.day">
+        <el-checkbox label="1" name="day">星期一</el-checkbox>
+        <el-checkbox label="2" name="day">星期二</el-checkbox>
+        <el-checkbox label="3" name="day">星期三</el-checkbox>
+        <el-checkbox label="4" name="day">星期四</el-checkbox>
+        <el-checkbox label="5" name="day">星期五</el-checkbox>
+        <el-checkbox label="6" name="day">星期六</el-checkbox>
+        <el-checkbox label="7" name="day">星期日</el-checkbox>
       </el-checkbox-group>
     </el-form-item>
 
-    <el-form-item label="星期" prop="type">
-      <el-checkbox-group v-model="ruleForm.type">
-        <el-checkbox label="星期一" name="type"></el-checkbox>
-        <el-checkbox label="星期二" name="type"></el-checkbox>
-        <el-checkbox label="星期三" name="type"></el-checkbox>
-        <el-checkbox label="星期四" name="type"></el-checkbox>
-        <el-checkbox label="星期五" name="type"></el-checkbox>
-        <el-checkbox label="星期六" name="type"></el-checkbox>
-        <el-checkbox label="星期日" name="type"></el-checkbox>
+    <el-form-item label="上课时间" prop="cth">
+      <el-checkbox-group v-model="order.cth">
+        <el-checkbox label="1" name="cth"></el-checkbox>
+        <el-checkbox label="2" name="cth"></el-checkbox>
+        <el-checkbox label="3" name="cth"></el-checkbox>
+        <el-checkbox label="4" name="cth"></el-checkbox>
+        <el-checkbox label="5" name="cth"></el-checkbox>
+        <el-checkbox label="6" name="cth"></el-checkbox>
+        <el-checkbox label="7" name="cth"></el-checkbox>
+        <el-checkbox label="8" name="cth"></el-checkbox>
+        <el-checkbox label="9" name="cth"></el-checkbox>
+        <el-checkbox label="10" name="cth"></el-checkbox>
+        <el-checkbox label="11" name="cth"></el-checkbox>
+        <el-checkbox label="12" name="cth"></el-checkbox>
       </el-checkbox-group>
     </el-form-item>
 
-    <el-form-item label="节" prop="type">
-      <el-checkbox-group v-model="ruleForm.type">
-        <el-checkbox label="1" name="type"></el-checkbox>
-        <el-checkbox label="2" name="type"></el-checkbox>
-        <el-checkbox label="3" name="type"></el-checkbox>
-        <el-checkbox label="4" name="type"></el-checkbox>
-        <el-checkbox label="5" name="type"></el-checkbox>
-        <el-checkbox label="6" name="type"></el-checkbox>
-        <el-checkbox label="7" name="type"></el-checkbox>
-        <el-checkbox label="8" name="type"></el-checkbox>
-        <el-checkbox label="9" name="type"></el-checkbox>
-        <el-checkbox label="10" name="type"></el-checkbox>
-        <el-checkbox label="11" name="type"></el-checkbox>
-        <el-checkbox label="12" name="type"></el-checkbox>
-      </el-checkbox-group>
-    </el-form-item>
-
-    <el-form-item label="学生人数" prop="name">
-      <el-input v-model="ruleForm.name"></el-input>
+    <el-form-item label="学生人数" prop="stunum">
+      <el-input v-model="order.stunum"></el-input>
     </el-form-item>
 
     <el-form-item>
-      <el-button type="primary" @click="submitForm('ruleForm')">
+      <el-button type="warning" :plain="true" @click="checkorder">
+        冲突检测
+      </el-button>
+      <el-button type="primary" :disabled="!checkresult" @click="submitorder">
         立即创建
       </el-button>
-      <el-button @click="resetForm('ruleForm')">重置</el-button>
+      <!-- <el-button @click="resetForm">重置</el-button> -->
     </el-form-item>
   </el-form>
 </template>
@@ -89,79 +93,139 @@
 <script lang="ts">
 import { State } from "@/store";
 import { Store, useStore } from "vuex";
-import { computed, ref } from "vue";
-import { OrderedInfo } from "@/role/Menu";
+import { computed, ref, watch } from "vue";
+import { Lab, OrderedInfo, OrderForm } from "@/role/Menu";
+import { ElMessage } from "element-plus";
+import { UPDATE_LABOCCUPY } from "@/store/VuexTypes";
 export default {
-  data() {
+  setup() {
     const store: Store<State> = useStore();
     const lablist = computed(() => store.state.labinfoList);
+    const order = ref<OrderForm>({ week: [], day: [], cth: [] });
+    const checkresult = ref(false);
+    const checkorder = () => {
+      let check = true;
+      if (
+        order.value.labid == null ||
+        order.value.week == null ||
+        order.value.day == null ||
+        order.value.cth == null ||
+        order.value.stunum == null ||
+        order.value.courseid == null
+      ) {
+        check = false;
+      }
+      const labinfo = store.state.labinfoList?.find((x) => {
+        return x.id == order.value.labid;
+      });
+      order.value.week?.forEach((x) => {
+        order.value.day?.forEach((y) => {
+          order.value.cth?.forEach((z) => {
+            const xi = parseInt(x);
+            const yi = parseInt(y);
+            const zi = parseInt(z);
+            labinfo?.occupyedTime?.some((item) => {
+              if (item.week == xi && item.day == yi && item.cth == zi) {
+                check = false;
+              }
+            });
+            console.log(check);
+          });
+        });
+      });
+      if (
+        labinfo?.deviceNum != undefined &&
+        order.value.stunum != undefined &&
+        labinfo?.deviceNum <= order.value.stunum
+      ) {
+        check = false;
+      }
+      console.log(check);
+      if (check) {
+        ElMessage.success({
+          showClose: true,
+          message: "通过冲突检测！课程预约与现有实验课程安排不存在冲突",
+          type: "success",
+        });
+      } else {
+        ElMessage({
+          showClose: true,
+          message: "未通过冲突检测！课程预约与现有实验课程安排存在冲突",
+          type: "error",
+        });
+      }
+      checkresult.value = check;
+      console.log(checkresult.value);
+    };
+    const submitorder = () => {
+      var arrweek;
+      arrweek = order.value.week?.map(function (data) {
+        return +data;
+      });
+      // arrweek?.forEach((x) => {
+      //   console.log(x);
+      // });
+      // console.log(arrweek);
+      var arrday;
+      arrday = order.value.day?.map(function (data) {
+        return +data;
+      });
+      var arrcth;
+      arrcth = order.value.cth?.map(function (data) {
+        return +data;
+      });
+      store.dispatch(UPDATE_LABOCCUPY, {
+        labid: order.value.labid,
+        week: arrweek,
+        day: arrday,
+        cth: arrcth,
+        stunum: order.value.stunum,
+        courseid: order.value.courseid,
+      } as OrderForm);
+      console.log(store.state.labinfoList);
+    };
+    const orderrules = {
+      courseid: [
+        { required: true, message: "请输入实验课程编号", trigger: "blur" },
+      ],
+      labid: [
+        { required: true, message: "请选择一个实验室", trigger: "change" },
+      ],
+      week: [
+        {
+          type: "array",
+          required: true,
+          message: "请至少选择一个周次",
+          trigger: "change",
+        },
+      ],
+      day: [
+        {
+          type: "array",
+          required: true,
+          message: "请至少选择一个星期",
+          trigger: "change",
+        },
+      ],
+      cth: [
+        {
+          type: "array",
+          required: true,
+          message: "请至少选择一个上课时间",
+          trigger: "change",
+        },
+      ],
+      stunum: [{ required: true, message: "请输入学生人数", trigger: "blur" }],
+    };
 
     return {
+      order,
+      submitorder,
+      orderrules,
       lablist,
-      ruleForm: {
-        name: "",
-        region: "",
-        date1: "",
-        date2: "",
-        delivery: false,
-        type: [],
-        resource: "",
-        desc: "",
-      },
-      rules: {
-        name: [
-          { required: true, message: "请输入活动名称", trigger: "blur" },
-          { min: 3, max: 5, message: "长度在 3 到 5 个字符", trigger: "blur" },
-        ],
-        region: [
-          { required: true, message: "请选择活动区域", trigger: "change" },
-        ],
-        date1: [
-          {
-            type: "date",
-            required: true,
-            message: "请选择日期",
-            trigger: "change",
-          },
-        ],
-        date2: [
-          {
-            type: "date",
-            required: true,
-            message: "请选择时间",
-            trigger: "change",
-          },
-        ],
-        type: [
-          {
-            type: "array",
-            required: true,
-            message: "请至少选择一个活动性质",
-            trigger: "change",
-          },
-        ],
-        resource: [
-          { required: true, message: "请选择活动资源", trigger: "change" },
-        ],
-        desc: [{ required: true, message: "请填写活动形式", trigger: "blur" }],
-      },
+      checkresult,
+      checkorder,
     };
-  },
-  methods: {
-    // submitForm(formName: string | number) {
-    //   let el: any = this.$refs;
-    //   el[formName].validate((valid: any) => {
-    //     if (valid) {
-    //       alert("submit!");
-    //     } else {
-    //       console.log("error submit!!");
-    //       return false;
-    //     }
-    //   });
-    // },
-    // resetForm(formName: string | number) {
-    //   this.$refs[formName].resetFields();
-    // },
   },
 };
 </script>

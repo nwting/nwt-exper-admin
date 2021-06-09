@@ -1,4 +1,4 @@
-import { Lab } from "./Menu";
+import { Lab, OrderForm } from "./Menu";
 const labinfolist: Lab[] = [
   {
     id: "910",
@@ -6,6 +6,7 @@ const labinfolist: Lab[] = [
     deviceNum: 120,
     description: "丹青机房910",
     isoccupyed: false,
+    occupyedTime: [],
   },
   {
     id: "911",
@@ -27,4 +28,30 @@ export function getlabinfoList() {
 export function updatelabinfoList(newlab: Lab) {
   labinfolist.push(newlab);
   return newlab;
+}
+export function getlabinfoListByid(gid: string) {
+  const labinfo = labinfolist.find((x) => {
+    return x.id == gid;
+  });
+  return labinfo;
+}
+export function updatelaboccupyinfo(item: OrderForm) {
+  labinfolist.forEach((x) => {
+    if (x.id == item.labid) {
+      x.isoccupyed = true;
+      item.week?.forEach((a) => {
+        item.day?.forEach((b) => {
+          item.cth?.forEach((c) => {
+            x.occupyedTime?.push({
+              week: a,
+              day: b,
+              cth: c,
+            });
+          });
+        });
+      });
+    }
+  });
+  //console.log("function updatelaboccupyinfo");
+  return item;
 }

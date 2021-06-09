@@ -138,7 +138,10 @@ export default defineComponent({
     // 发出异步请求，获取结果。没有置于state
     axios.get(`users/${uid}/personnalinfo`).then((resp) => {
       user.value = resp.data.data.userinfo;
+      //console.log(resp.data.data.userinfo);
+      //console.log(user.value);
     });
+
     return {
       user,
       // dialogFormVisible,
