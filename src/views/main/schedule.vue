@@ -4,7 +4,7 @@
   <el-table row-key="lab" ref="filterTable" :data="list">
     <el-table-column
       prop="lab"
-      label="选择实验室"
+      label="实验室"
       sortable
       width="180"
       column-key="labId"
@@ -167,16 +167,7 @@ export default {
       { text: "17", value: "17" },
       { text: "18", value: "18" },
     ];
-    //  formatter(row: any, column: any) {
-    //   return row.address;
-    // },
-    // filterTag(value: any, row: any) {
-    //   return row.tag === value;
-    // },
-    // filterHandler(value: any, row: any, column: any) {
-    //   const property = column["property"];
-    //   return row[property] === value;
-    // },
+
     const formatter = (row: any, column: any) => {
       return row.address;
     };
@@ -198,59 +189,6 @@ export default {
       labfilter,
     };
   },
-  // data() {
-  //   const store: Store<State> = useStore();
-  //   const orderedinfoList = computed(() => store.state.orderedinfoList);
-  //   //  const orderedlab = computed(() => this.$data);
-
-  //   const list = dealdata(orderedinfoList.value);
-  //   const datefilter = [
-  //     { text: "1", value: "1" },
-  //     { text: "2", value: "2" },
-  //     { text: "3", value: "3" },
-  //     { text: "4", value: "4" },
-  //     { text: "5", value: "5" },
-  //     { text: "6", value: "6" },
-  //     { text: "7", value: "7" },
-  //     { text: "8", value: "8" },
-  //     { text: "9", value: "9" },
-  //     { text: "10", value: "10" },
-  //     { text: "11", value: "11" },
-  //     { text: "12", value: "12" },
-  //     { text: "13", value: "13" },
-  //     { text: "14", value: "14" },
-  //     { text: "15", value: "15" },
-  //     { text: "16", value: "16" },
-  //     { text: "17", value: "17" },
-  //     { text: "18", value: "18" },
-  //   ];
-  //   return {
-  //     orderedinfoList,
-  //     list,
-  //     datefilter,
-  //   };
-  // },
-  // methods: {
-  //   // resetDateFilter() {
-  //   //   //let el: any = this.$refs;
-  //   //   //el.filterTable.clearFilter("lab");
-  //   //   console.log(this);
-  //   // },
-  //   // clearFilter() {
-  //   //   //let el: any = this.$refs;
-  //   //   //el.filterTable.clearFilter();
-  //   // },
-  //   formatter(row: any, column: any) {
-  //     return row.address;
-  //   },
-  //   filterTag(value: any, row: any) {
-  //     return row.tag === value;
-  //   },
-  //   filterHandler(value: any, row: any, column: any) {
-  //     const property = column["property"];
-  //     return row[property] === value;
-  //   },
-  // },
 };
 </script>
 

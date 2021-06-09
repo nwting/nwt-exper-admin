@@ -1,8 +1,14 @@
 import { updatelabinfoList, updatelaboccupyinfo } from "@/role/LabInfo";
 import { Menu, Role, UserInfo, Lab } from "@/role/Menu";
-import { getuserinfoList, getuserinfo } from "@/role/UserInfo";
+import {
+  getuserinfoList,
+  getuserinfobyId,
+  updateuserinfo,
+  deleteuserinfo,
+  createteacher,
+} from "@/role/UserInfo";
 import { updateorderinfo_occupyform } from "@/role/OrderedInfo";
-import { updatecourseinfoList } from "@/role/CourseInfo";
+import { updatecourseinfoList, updatecourselabinfo } from "@/role/CourseInfo";
 import axios from "axios";
 import MockAdapter from "axios-mock-adapter";
 
@@ -33,6 +39,47 @@ mock.onGet(path("users/{uid}/personnalinfo")).reply((c) => {
   resulVO.data = { userinfo };
   return [200, resulVO];
 });
+mock.onPost("deleteUserInfo").reply((c) => {
+  const data = c.data;
+  const { id } = JSON.parse(data);
+  const deleteinfo = deleteuserinfo(id);
+  resulVO.data = { deleteinfo };
+  return [200, resulVO];
+});
+mock.onPost("createTeacher").reply((c) => {
+  const data = c.data;
+  const { id, pw, role, name, gender, age, college, major } = JSON.parse(data);
+  const cinfo = {
+    id: id,
+    pw: pw,
+    role: role,
+    name: name,
+    gender: gender,
+    age: age,
+    college: college,
+    major: major,
+  };
+  const createinfo = createteacher(cinfo);
+  resulVO.data = { createinfo };
+  return [200, resulVO];
+});
+mock.onPost("updateUserList").reply((c) => {
+  const data = c.data;
+  const { id, pw, role, name, gender, age, college, major } = JSON.parse(data);
+  const upinfo = {
+    id: id,
+    pw: pw,
+    role: role,
+    name: name,
+    gender: gender,
+    age: age,
+    college: college,
+    major: major,
+  };
+  const updateinfo = updateuserinfo(upinfo);
+  resulVO.data = { updateinfo };
+  return [200, resulVO];
+});
 mock.onPost("updateCourseList").reply((c) => {
   const data = c.data;
   const {
@@ -55,6 +102,20 @@ mock.onPost("updateCourseList").reply((c) => {
   };
   const updated = updatecourseinfoList(newcourse);
   resulVO.data = { updated };
+  return [200, resulVO];
+});
+mock.onPost("updateCourseInfo_Lab").reply((c) => {
+  const data = c.data;
+  const { labid, week, day, cth, stunum, courseid } = JSON.parse(data);
+  const orderitem = {
+    labid: labid,
+    week: week,
+    day: day,
+    cth: cth,
+    courseid: courseid,
+  };
+  const updatecourselab = updatecourselabinfo(orderitem);
+  resulVO.data = { updatecourselab };
   return [200, resulVO];
 });
 mock.onPost("updateLabList").reply((c) => {

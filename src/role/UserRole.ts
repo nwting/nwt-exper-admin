@@ -56,6 +56,14 @@ const routes: Array<RouteRecordRaw> = [
         path: "/test",
         component: () => import("@/views/main/test.vue"),
       },
+      {
+        path: "/createteacher",
+        component: () => import("@/views/main/createteacher.vue"),
+      },
+      {
+        path: "/teacheradmin",
+        component: () => import("@/views/main/teacheradmin.vue"),
+      },
     ],
   },
 
@@ -129,11 +137,15 @@ const roleList: Role[] = [
           },
           {
             title: "修改个人密码",
-            path: "/p1",
+            path: "/test",
+          },
+          {
+            title: "添加教师",
+            path: "/createteacher",
           },
           {
             title: "教师管理",
-            path: "/p1",
+            path: "/teacheradmin",
           },
         ],
       },

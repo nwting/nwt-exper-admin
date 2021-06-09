@@ -24,7 +24,7 @@ const userinfoList: UserInfo[] = [
   },
   {
     id: "1002",
-    pw: "123456",
+    pw: "1",
     role: "2",
     name: "李老师",
     gender: "女",
@@ -36,8 +36,24 @@ const userinfoList: UserInfo[] = [
 export function getuserinfoList() {
   return userinfoList;
 }
-export function getuserinfo(id: string) {
-  return getuserinfoList().find((x) => {
-    return x.id == id;
+export function getuserinfobyId(id: string) {
+  return userinfoList.find((x) => x.id == id);
+}
+export function updateuserinfo(upuser: UserInfo) {
+  userinfoList.forEach((u) => {
+    if (u.id == upuser.id) {
+      userinfoList.splice(userinfoList.indexOf(u), 1, upuser);
+    }
   });
+  return upuser;
+}
+export function deleteuserinfo(duid: string) {
+  userinfoList.forEach((x) => {
+    if (x.id == duid) {
+      userinfoList.splice(userinfoList.indexOf(x), 1);
+    }
+  });
+}
+export function createteacher(newteacher: UserInfo) {
+  userinfoList.push(newteacher);
 }

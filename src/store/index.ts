@@ -29,12 +29,13 @@ export interface State {
   orderedinfoList?: OrderedInfo[];
   orderedinfo?: OrderForm;
   orderform?: OrderForm;
+  updatecourselab?: OrderForm;
 }
 
 const state: State = {
   role: null,
   roleList: [],
-  userinfoList: [],
+  userinfoList: getuserinfoList(),
   userinfo: { id: "" },
   courseinfoList: getcourseinfoList(),
   courseinfo: { id: "" },
@@ -43,6 +44,7 @@ const state: State = {
   orderedinfoList: getorderedinfoList(),
   orderedinfo: {},
   orderform: {},
+  updatecourselab: {},
 };
 
 const mutations = {
@@ -66,6 +68,9 @@ const mutations = {
   [types.UPDATE_ORDEREDLIST]: (state: State, data: OrderForm) => {
     state.orderedinfo = data;
   },
+  [types.UPDATE_COURSELISTLAB]: (state: State, data: OrderForm) => {
+    state.updatecourselab = data;
+  },
 };
 
 // const getters = {
@@ -75,6 +80,30 @@ const mutations = {
 const actions: ActionTree<State, State> = {
   [types.UPDATE_USER]: ({ commit }, user: UserInfo) => {
     setTimeout(() => commit(types.UPDATE_USER, user), 1000);
+  },
+  async [types.CREATE_TEACHER]({ commit }, newteacher: UserInfo) {
+    try {
+      const resp = await axios.post<ResultVO>("createTeacher", newteacher);
+    } catch (error) {
+      //
+    }
+  },
+  async [types.UPDATE_USERINFO]({ commit }, upinfo: UserInfo) {
+    try {
+      const resp = await axios.post<ResultVO>("updateUserList", upinfo);
+      if (upinfo.id == state.userinfo.id) {
+        commit(types.UPDATE_USER, resp.data.data.updateinfo);
+      }
+    } catch (error) {
+      //
+    }
+  },
+  async [types.DELETE_USERINFO]({ commit }, duid: string) {
+    try {
+      const resp = await axios.post<ResultVO>("deleteUserInfo", duid);
+    } catch (error) {
+      //
+    }
   },
   async [types.UPDATE_LABOCCUPY]({ commit }, orderitem: OrderForm) {
     try {
@@ -86,6 +115,11 @@ const actions: ActionTree<State, State> = {
       commit(types.UPDATE_LABOCCUPY, resp1.data.data.orderform);
       const resp2 = await axios.post<ResultVO>("updateOrderedInfo", orderitem);
       commit(types.UPDATE_ORDEREDLIST, resp2.data.data.orderedinfo);
+      const resp3 = await axios.post<ResultVO>(
+        "updateCourseInfo_Lab",
+        orderitem
+      );
+      commit(types.UPDATE_COURSELISTLAB, resp3.data.data.updatecourselab);
     } catch (error) {
       //
     }

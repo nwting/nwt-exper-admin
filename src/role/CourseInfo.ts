@@ -1,4 +1,4 @@
-import { CourseInfo, Time, Lab, Teacher } from "./Menu";
+import { CourseInfo, Time, Lab, Teacher, OrderForm, TakeLabInfo } from "./Menu";
 const courseinfolist: CourseInfo[] = [
   {
     id: "1",
@@ -18,7 +18,7 @@ const courseinfolist: CourseInfo[] = [
     id: "2",
     name: "java实验",
     takePeriod: 4,
-    teacher: { id: "1002", name: "王老师" },
+    teacher: { id: "1001", name: "王老师" },
     stuNum: 100,
     takelabInfo: [
       { week: 3, day: 2, cth: 1, labid: "920" },
@@ -62,4 +62,23 @@ export function getcourseinfoList() {
 export function updatecourseinfoList(newcourse: CourseInfo) {
   courseinfolist.push(newcourse);
   return newcourse;
+}
+export function updatecourselabinfo(item: OrderForm) {
+  courseinfolist.forEach((c) => {
+    if (c.id == item.courseid) {
+      item.week?.forEach((x) => {
+        item.day?.forEach((y) => {
+          item.cth?.forEach((z) => {
+            c.takelabInfo?.push({
+              week: parseInt(x),
+              day: parseInt(y),
+              cth: parseInt(z),
+              labid: item.labid,
+            } as TakeLabInfo);
+          });
+        });
+      });
+    }
+  });
+  return item;
 }

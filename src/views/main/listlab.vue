@@ -15,7 +15,14 @@
       sortable
       column-key="deviceNum"
     ></el-table-column>
-    <el-table-column prop="id" label="实验室编号" width="180"></el-table-column>
+    <el-table-column
+      prop="id"
+      label="实验室编号"
+      sortable
+      width="180"
+      :filters="labfilter"
+      :filter-method="filterHandler"
+    ></el-table-column>
     <el-table-column
       prop="place"
       label="教学楼"
@@ -34,12 +41,32 @@ import { State } from "@/store";
 import { Store, useStore } from "vuex";
 import { computed, ref } from "vue";
 import { Lab } from "@/role/Menu";
+function setlabfilter(labinfoList: Lab[] | undefined) {
+  const arr: { text: string; value: string }[] = [];
+  if (labinfoList != undefined) {
+    labinfoList.forEach((x) => {
+      const item = {
+        text: x.id,
+        value: x.id,
+      };
+      arr.push(item);
+    });
+    return arr;
+  }
+}
 export default {
   setup() {
     const store: Store<State> = useStore();
     const labinfolist = computed(() => store.state.labinfoList);
+    const labfilter = setlabfilter(labinfolist.value);
+    const filterHandler = (value: any, row: any, column: any) => {
+      const property = column["property"];
+      return row[property] === value;
+    };
     return {
       labinfolist,
+      labfilter,
+      filterHandler,
     };
   },
 };

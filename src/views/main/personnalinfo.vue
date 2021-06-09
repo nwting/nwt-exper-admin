@@ -99,7 +99,7 @@
 
 <script lang="ts">
 import { computed, defineComponent, ref } from "vue";
-import { getuserinfoList, getuserinfo } from "@/role/UserInfo";
+import { getuserinfoList, getuserinfobyId } from "@/role/UserInfo";
 import { Store, useStore } from "vuex";
 import { State } from "@/store";
 import { SHOW_USERINFO, UPDATE_USER } from "@/store/VuexTypes";
