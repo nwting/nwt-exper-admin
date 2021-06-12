@@ -64,6 +64,10 @@ const routes: Array<RouteRecordRaw> = [
         path: "/teacheradmin",
         component: () => import("@/views/main/teacheradmin.vue"),
       },
+      {
+        path: "/listorderinfo",
+        component: () => import("@/views/main/listorderinfo.vue"),
+      },
     ],
   },
 
@@ -88,7 +92,7 @@ const roleList: Role[] = [
           },
           {
             title: "修改个人密码",
-            path: "/test",
+            path: "/modifypw",
           },
         ],
       },
@@ -114,7 +118,7 @@ const roleList: Role[] = [
           },
           {
             title: "查看预约信息",
-            path: "/test",
+            path: "/listorderinfo",
           },
           {
             title: "查看排期表",
@@ -172,25 +176,6 @@ const roleList: Role[] = [
         ],
       },
     ],
-  },
-];
-const menuList: Menu[] = [
-  {
-    title: "学生管理模块",
-    children: [
-      {
-        title: "学生管理",
-        path: "/p1",
-      },
-      {
-        title: "课程管理",
-        path: "/p1",
-      },
-    ],
-  },
-  {
-    title: "课程管理模块",
-    children: [],
   },
 ];
 

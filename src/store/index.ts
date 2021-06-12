@@ -7,15 +7,22 @@ import {
   OrderedInfo,
   OrderForm,
   CourseInfo,
+  LabOrderInfo,
 } from "@/role/Menu";
 import { getuserinfoList } from "@/role/UserInfo";
-import { getlabinfoList, updatelaboccupyinfo } from "@/role/LabInfo";
+import {
+  getlabinfoList,
+  updatelaboccupyinfo,
+  updatelabinfo,
+  deletelabinfo,
+} from "@/role/LabInfo";
 import router from "@/router";
 import axios from "axios";
 import { ResultVO } from "@/mock";
 import * as types from "./VuexTypes";
 import { getorderedinfoList } from "@/role/OrderedInfo";
 import { getcourseinfoList } from "@/role/CourseInfo";
+import { getlaborderinfolist } from "@/role/LabOrderInfo";
 
 export interface State {
   role?: string | null;
@@ -26,6 +33,7 @@ export interface State {
   courseinfo: CourseInfo;
   labinfoList?: Lab[];
   labinfo: Lab;
+  laborderinfoList?: LabOrderInfo[];
   orderedinfoList?: OrderedInfo[];
   orderedinfo?: OrderForm;
   orderform?: OrderForm;
@@ -41,6 +49,7 @@ const state: State = {
   courseinfo: { id: "" },
   labinfoList: getlabinfoList(),
   labinfo: { id: "" },
+  laborderinfoList: getlaborderinfolist(),
   orderedinfoList: getorderedinfoList(),
   orderedinfo: {},
   orderform: {},
@@ -59,6 +68,9 @@ const mutations = {
   },
   [types.UPDATE_USER]: (state: State, data: UserInfo) =>
     (state.userinfo = data),
+  [types.UPDATE_USERPW]: (state: State, data: string) => {
+    state.userinfo.pw = data;
+  },
   [types.UPDATE_LABLIST]: (state: State, data: Lab) => (state.labinfo = data),
   [types.UPDATE_COURSELIST]: (state: State, data: CourseInfo) =>
     (state.courseinfo = data),
@@ -90,7 +102,7 @@ const actions: ActionTree<State, State> = {
   },
   async [types.UPDATE_USERINFO]({ commit }, upinfo: UserInfo) {
     try {
-      const resp = await axios.post<ResultVO>("updateUserList", upinfo);
+      const resp = await axios.post<ResultVO>("updateUserInfo", upinfo);
       if (upinfo.id == state.userinfo.id) {
         commit(types.UPDATE_USER, resp.data.data.updateinfo);
       }
@@ -98,9 +110,46 @@ const actions: ActionTree<State, State> = {
       //
     }
   },
+  async [types.UPDATE_USERPW]({ commit }, uppw: any) {
+    try {
+      const resp = await axios.post<ResultVO>("updateUserPw", uppw);
+      commit(types.UPDATE_USERPW, resp.data.data.updatepw);
+      console.log(uppw);
+    } catch (error) {
+      //
+    }
+  },
+  async [types.UPDATE_LABINFO]({ commit }, upinfo: Lab) {
+    try {
+      const resp = await axios.post<ResultVO>("updateLabInfo", upinfo);
+      // if (upinfo.id == state.userinfo.id) {
+      //   commit(types.UPDATE_USER, resp.data.data.updateinfo);
+      // }
+    } catch (error) {
+      //
+    }
+  },
   async [types.DELETE_USERINFO]({ commit }, duid: string) {
     try {
       const resp = await axios.post<ResultVO>("deleteUserInfo", duid);
+    } catch (error) {
+      //
+    }
+  },
+  async [types.DELETE_LABINFO]({ commit }, duid: string) {
+    try {
+      const resp = await axios.post<ResultVO>("deleteLabInfo", duid);
+    } catch (error) {
+      //
+    }
+  },
+  async [types.DELETE_ORDERINFO]({ commit }, ditem: LabOrderInfo) {
+    try {
+      const resp2 = await axios.post<ResultVO>("deleteOrderedInfo", ditem);
+      const resp3 = await axios.post<ResultVO>("deleteLabOccupyInfo", ditem);
+      const resp4 = await axios.post<ResultVO>("deleteCourseInfo", ditem);
+      //会重复删除数据啊啊啊
+      //const resp1 = await axios.post<ResultVO>("deleteLabOrderInfo", ditem);
     } catch (error) {
       //
     }
@@ -120,10 +169,12 @@ const actions: ActionTree<State, State> = {
         orderitem
       );
       commit(types.UPDATE_COURSELISTLAB, resp3.data.data.updatecourselab);
+      const resp4 = await axios.post<ResultVO>("createLabOrderInfo", orderitem);
     } catch (error) {
       //
     }
   },
+
   async [types.UPDATE_LABLIST]({ commit }, newlab: Lab) {
     try {
       console.log("UPDATE_LABLIST");

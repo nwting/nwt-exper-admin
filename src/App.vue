@@ -4,6 +4,15 @@
     <router-view />
   </div>
 </template>
+<script lang="ts">
+export default {
+  mounted() {
+    document
+      .querySelector("body")
+      .setAttribute("style", "background-color:#e7f0fd");
+  },
+};
+</script>
 
 <style>
 #app {
@@ -13,7 +22,14 @@
   text-align: center;
   color: #2c3e50;
 }
-
+/* * {
+  background-image: linear-gradient(
+    -225deg,
+    #7085b6 0%,
+    #87a7d9 50%,
+    #def3f8 100%
+  );
+} */
 #nav {
   padding: 30px;
 }

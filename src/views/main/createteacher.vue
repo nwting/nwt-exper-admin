@@ -1,13 +1,19 @@
 <template>
   <!-- <div>{{ lab }}</div> -->
-  <el-form label-width="100px" class="demo-ruleForm">
-    <el-form-item label="教师ID">
+  <el-form
+    label-width="100px"
+    class="demo-ruleForm"
+    :model="newteacher"
+    :rules="rules"
+    ref="newteacher.value"
+  >
+    <el-form-item label="教师ID" prop="id">
       <el-input v-model="newteacher.id"></el-input>
     </el-form-item>
-    <el-form-item label="设置密码">
+    <el-form-item label="设置密码" prop="pw">
       <el-input v-model="newteacher.pw"></el-input>
     </el-form-item>
-    <el-form-item label="教师姓名">
+    <el-form-item label="教师姓名" prop="name">
       <el-input v-model="newteacher.name"></el-input>
     </el-form-item>
     <el-form-item label="教师性别">
@@ -23,7 +29,9 @@
       <el-input v-model="newteacher.major"></el-input>
     </el-form-item>
     <el-form-item>
-      <el-button type="primary" @click="createTeacher">立即创建</el-button>
+      <el-button type="primary" :disabled="!result" @click="createTeacher">
+        立即创建
+      </el-button>
       <!-- <el-button @click="resetForm('ruleForm')">重置</el-button> -->
     </el-form-item>
   </el-form>
@@ -32,7 +40,7 @@
 <script lang="ts">
 import { State } from "@/store";
 import { Store, useStore } from "vuex";
-import { computed, ref } from "vue";
+import { computed, ref, watch } from "vue";
 import { Lab, UserInfo } from "@/role/Menu";
 import { CREATE_TEACHER, CREATE_LAB, UPDATE_LABLIST } from "@/store/VuexTypes";
 export default {
@@ -40,6 +48,23 @@ export default {
     const store: Store<State> = useStore();
     const newteacher = ref<UserInfo>({
       id: "",
+    });
+    const rules = {
+      id: [{ required: true, message: "请输入教师编号", trigger: "blur" }],
+      name: [{ required: true, message: "请输入教师姓名", trigger: "blur" }],
+      pw: [{ required: true, message: "请输入账号密码", trigger: "blur" }],
+    };
+    var result = ref(false);
+    watch(newteacher.value, () => {
+      if (
+        newteacher.value.id == null ||
+        newteacher.value.name == null ||
+        newteacher.value.pw == null
+      ) {
+        result.value = false;
+      } else {
+        result.value = true;
+      }
     });
     const createTeacher = () => {
       store.dispatch(CREATE_TEACHER, {
@@ -53,10 +78,13 @@ export default {
         major: newteacher.value.major,
       } as UserInfo);
       //console.log("createLab");
+      alert("添加成功！");
     };
     return {
       createTeacher,
       newteacher,
+      result,
+      rules,
     };
   },
 };

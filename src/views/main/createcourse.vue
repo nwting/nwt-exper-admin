@@ -55,16 +55,20 @@ export default {
     });
 
     const createCourse = () => {
-      store.dispatch(UPDATE_COURSELIST, {
-        id: newcourse.value.id,
-        name: newcourse.value.name,
-        takePeriod: newcourse.value.takePeriod,
-        teacher: { id: uid, name: uname },
-        stuNum: newcourse.value.stuNum,
-        takelabInfo: [],
-        otherInfo: newcourse.value.otherInfo,
-      } as CourseInfo);
-      console.log(store.state.courseinfoList);
+      var cf = confirm("创建后不可修改信息，是否继续？");
+      if (cf == true) {
+        store.dispatch(UPDATE_COURSELIST, {
+          id: newcourse.value.id,
+          name: newcourse.value.name,
+          takePeriod: newcourse.value.takePeriod,
+          teacher: { id: uid, name: uname },
+          stuNum: newcourse.value.stuNum,
+          takelabInfo: [],
+          otherInfo: newcourse.value.otherInfo,
+        } as CourseInfo);
+        console.log(store.state.courseinfoList);
+        alert("创建成功！");
+      }
     };
     const rules = {
       id: [{ required: true, message: "请输入实验课程编号", trigger: "blur" }],

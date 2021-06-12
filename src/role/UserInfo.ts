@@ -1,15 +1,4 @@
 import { Menu, Role, UserInfo } from "./Menu";
-// export interface UserInfo {
-//   id: string;
-//   pw: string;
-//   role: string;
-//   name?: string;
-//   gender?: string;
-//   age?: number;
-//   college?: string;
-//   major?: string;
-// }
-
 //规定role=“1”--教师；role=“2”--管理员
 const userinfoList: UserInfo[] = [
   {
@@ -46,6 +35,14 @@ export function updateuserinfo(upuser: UserInfo) {
     }
   });
   return upuser;
+}
+export function updateuserpw(uid: string, npw: string) {
+  const u = getuserinfobyId(uid);
+  if (u != undefined) {
+    u.pw = npw;
+  }
+  console.log(getuserinfobyId("1001"));
+  return npw;
 }
 export function deleteuserinfo(duid: string) {
   userinfoList.forEach((x) => {

@@ -97,11 +97,17 @@ import { computed, ref, watch } from "vue";
 import { Lab, OrderedInfo, OrderForm } from "@/role/Menu";
 import { ElMessage } from "element-plus";
 import { UPDATE_LABOCCUPY } from "@/store/VuexTypes";
+//import { formatDate } from "@/role/Menu";
 export default {
   setup() {
     const store: Store<State> = useStore();
     const lablist = computed(() => store.state.labinfoList);
-    const order = ref<OrderForm>({ week: [], day: [], cth: [] });
+    const order = ref<OrderForm>({
+      week: [],
+      day: [],
+      cth: [],
+      createTime: "",
+    });
     const checkresult = ref(false);
     const checkorder = () => {
       let check = true;
@@ -162,10 +168,6 @@ export default {
       arrweek = order.value.week?.map(function (data) {
         return +data;
       });
-      // arrweek?.forEach((x) => {
-      //   console.log(x);
-      // });
-      // console.log(arrweek);
       var arrday;
       arrday = order.value.day?.map(function (data) {
         return +data;
@@ -181,8 +183,10 @@ export default {
         cth: arrcth,
         stunum: order.value.stunum,
         courseid: order.value.courseid,
+        createTime: new Date().toISOString().substring(0, 19),
       } as OrderForm);
-      console.log(store.state.labinfoList);
+      console.log(store.state.laborderinfoList);
+      alert("预约成功！");
     };
     const orderrules = {
       courseid: [

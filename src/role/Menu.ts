@@ -51,16 +51,7 @@ export interface CourseInfo {
   takelabInfo?: TakeLabInfo[];
   otherInfo?: string;
 }
-export interface LabOrderInfo {
-  id: string;
-  orderLabId?: string;
-  orderUser?: Teacher;
-  createTime?: string;
-  orderCourseTime?: Time[];
-  orderCourse?: CourseInfo;
-  remainDev?: number;
-  isOrdered?: false;
-}
+
 export interface CthToCourse {
   cth?: number;
   course?: CourseInfo;
@@ -75,6 +66,15 @@ export interface OrderedInfo {
   week?: number; //周次
   orderInfo?: DayToOrderInfo[];
 }
+
+export interface LabOrderInfo {
+  orderLabId?: string;
+  orderUser?: Teacher;
+  createTime?: string;
+  orderCourseTime?: Time[];
+  orderCourse?: CourseInfo;
+  isOrdered?: boolean;
+}
 export interface OrderForm {
   labid?: string;
   week?: [];
@@ -82,4 +82,19 @@ export interface OrderForm {
   cth?: [];
   stunum?: number;
   courseid?: string;
+  createTime?: string;
 }
+// {
+//   id: "1",
+//   name: "web实验",
+//   takePeriod: 4,
+//   teacher: { id: "1001", name: "王老师" },
+//   stuNum: 60,
+//   takelabInfo: [
+//     { week: 3, day: 1, cth: 1, labid: "910" },
+//     { week: 3, day: 1, cth: 2, labid: "910" },
+//     { week: 4, day: 1, cth: 1, labid: "911" },
+//     { week: 4, day: 1, cth: 2, labid: "911" },
+//   ],
+//   otherInfo: "",
+// },

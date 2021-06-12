@@ -5,15 +5,19 @@
     <hr />
     <router-view />
   </div> -->
-  <el-container style="height：1000px; border: 1px solid #eee">
+  <el-container
+    style="height：1000px; border: 1px solid #eee;background-color:#e7f0fd"
+  >
     <el-page-header
       icon="el-icon-arrow-left"
-      style="background-color: #b3c0d1"
+      style="background-color: #c5d1eb"
       @click="goback"
     >
       <!-- <router-link :to="login"></router-link> -->
     </el-page-header>
-    <el-header style="text-align: right; font-size: 18px">
+    <el-header
+      style="text-align: right; font-size: 18px; background-color: #c5d1eb"
+    >
       <span>{{ role1List.title }}</span>
     </el-header>
     <el-container>
