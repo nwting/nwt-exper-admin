@@ -141,7 +141,7 @@ const roleList: Role[] = [
           },
           {
             title: "修改个人密码",
-            path: "/test",
+            path: "/modifypw",
           },
           {
             title: "添加教师",
