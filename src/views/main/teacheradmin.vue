@@ -55,8 +55,6 @@
     </el-table-column>
     <el-table-column label="操作">
       <template #default="scope">
-        <span style="margin-left: 10px">{{ scope.$index }}</span>
-
         <el-button size="mini" @click="handleEdit(scope.$index, scope.row)">
           编辑
         </el-button>

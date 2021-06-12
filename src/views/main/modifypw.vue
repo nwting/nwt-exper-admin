@@ -110,8 +110,4 @@ export default {
 .demo-ruleForm {
   width: 50%;
 }
-/* .oper {
-  margin-left: 100px;
-  margin-right: 100px;
-} */
 </style>

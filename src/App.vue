@@ -7,9 +7,10 @@
 <script lang="ts">
 export default {
   mounted() {
-    document
-      .querySelector("body")
-      .setAttribute("style", "background-color:#e7f0fd");
+    const tmp = document.querySelector("body");
+    if (tmp) {
+      tmp.setAttribute("style", "background-color:#e7f0fd");
+    }
   },
 };
 </script>
