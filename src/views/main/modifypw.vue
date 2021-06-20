@@ -5,7 +5,7 @@
     :rules="rules"
     ref="ruleForm"
     label-width="100px"
-    class="demo-ruleForm"
+    class="ruleForm"
   >
     <el-form-item label="密码" prop="pass">
       <el-input
@@ -107,7 +107,8 @@ export default {
 </script>
 
 <style>
-.demo-ruleForm {
+.ruleForm {
   width: 50%;
+  margin: 10px auto;
 }
 </style>

@@ -2,7 +2,7 @@
   <!-- <div>{{ lab }}</div> -->
   <el-form
     label-width="100px"
-    class="demo-ruleForm"
+    class="elform"
     :model="newcourse"
     :rules="rules"
     ref="newcourse.value"
@@ -101,4 +101,9 @@ export default {
 };
 </script>
 
-<style></style>
+<style>
+.elform {
+  width: 50%;
+  margin: 10px auto;
+}
+</style>

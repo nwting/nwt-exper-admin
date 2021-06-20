@@ -4,79 +4,88 @@
     :rules="orderrules"
     ref="order.value"
     label-width="100px"
-    class="demo-ruleForm"
+    class="ruleForm"
   >
-    <el-form-item label="实验课程编号" prop="courseid">
-      <el-input v-model="order.courseid"></el-input>
-    </el-form-item>
-
-    <el-form-item label="实验室编号" prop="labid">
-      <el-select v-model="order.labid">
-        <el-option
-          v-for="(l, index) in lablist"
-          :key="index"
-          :label="`${l.id}`"
-          :value="`${l.id}`"
-          name="labid"
-        ></el-option>
-      </el-select>
-    </el-form-item>
+    <el-form
+      :inline="true"
+      :model="order"
+      :rules="orderrules"
+      ref="order.value"
+      label-width="150px"
+      class="elform1"
+    >
+      <el-form-item label="实验课程编号" prop="courseid">
+        <el-input v-model="order.courseid"></el-input>
+      </el-form-item>
+      <el-form-item label="学生人数" prop="stunum">
+        <el-input v-model="order.stunum"></el-input>
+      </el-form-item>
+      <el-form-item label="实验室编号" prop="labid">
+        <el-select v-model="order.labid">
+          <el-option
+            v-for="(l, index) in lablist"
+            :key="index"
+            :label="`${l.id}`"
+            :value="`${l.id}`"
+            name="labid"
+          ></el-option>
+        </el-select>
+      </el-form-item>
+    </el-form>
 
     <el-form-item label="周次" prop="week">
       <el-checkbox-group v-model="order.week">
-        <el-checkbox label="1" name="week"></el-checkbox>
-        <el-checkbox label="2" name="week"></el-checkbox>
-        <el-checkbox label="3" name="week"></el-checkbox>
-        <el-checkbox label="4" name="week"></el-checkbox>
-        <el-checkbox label="5" name="week"></el-checkbox>
-        <el-checkbox label="6" name="week"></el-checkbox>
-        <el-checkbox label="7" name="week"></el-checkbox>
-        <el-checkbox label="8" name="week"></el-checkbox>
-        <el-checkbox label="9" name="week"></el-checkbox>
-        <el-checkbox label="10" name="week"></el-checkbox>
-        <el-checkbox label="11" name="week"></el-checkbox>
-        <el-checkbox label="12" name="week"></el-checkbox>
-        <el-checkbox label="13" name="week"></el-checkbox>
-        <el-checkbox label="14" name="week"></el-checkbox>
-        <el-checkbox label="15" name="week"></el-checkbox>
-        <el-checkbox label="16" name="week"></el-checkbox>
-        <el-checkbox label="17" name="week"></el-checkbox>
-        <el-checkbox label="18" name="week"></el-checkbox>
+        <el-checkbox label="1" name="week" border></el-checkbox>
+        <el-checkbox label="2" name="week" border></el-checkbox>
+        <el-checkbox label="3" name="week" border></el-checkbox>
+        <el-checkbox label="4" name="week" border></el-checkbox>
+        <el-checkbox label="5" name="week" border></el-checkbox>
+        <el-checkbox label="6" name="week" border></el-checkbox>
+        <el-checkbox label="7" name="week" border></el-checkbox>
+        <el-checkbox label="8" name="week" border></el-checkbox>
+        <el-checkbox label="9" name="week" border></el-checkbox>
+        <el-checkbox label="10" name="week" border></el-checkbox>
+        <el-checkbox label="11" name="week" border></el-checkbox>
+        <el-checkbox label="12" name="week" border></el-checkbox>
+        <el-checkbox label="13" name="week" border></el-checkbox>
+        <el-checkbox label="14" name="week" border></el-checkbox>
+        <el-checkbox label="15" name="week" border></el-checkbox>
+        <el-checkbox label="16" name="week" border></el-checkbox>
+        <el-checkbox label="17" name="week" border></el-checkbox>
+        <el-checkbox label="18" name="week" border></el-checkbox>
       </el-checkbox-group>
     </el-form-item>
-
     <el-form-item label="星期" prop="day">
       <el-checkbox-group v-model="order.day">
-        <el-checkbox label="1" name="day">星期一</el-checkbox>
-        <el-checkbox label="2" name="day">星期二</el-checkbox>
-        <el-checkbox label="3" name="day">星期三</el-checkbox>
-        <el-checkbox label="4" name="day">星期四</el-checkbox>
-        <el-checkbox label="5" name="day">星期五</el-checkbox>
-        <el-checkbox label="6" name="day">星期六</el-checkbox>
-        <el-checkbox label="7" name="day">星期日</el-checkbox>
+        <el-checkbox label="1" name="day" border>星期一</el-checkbox>
+        <el-checkbox label="2" name="day" border>星期二</el-checkbox>
+        <el-checkbox label="3" name="day" border>星期三</el-checkbox>
+        <el-checkbox label="4" name="day" border>星期四</el-checkbox>
+        <el-checkbox label="5" name="day" border>星期五</el-checkbox>
+        <el-checkbox label="6" name="day" border>星期六</el-checkbox>
+        <el-checkbox label="7" name="day" border>星期日</el-checkbox>
       </el-checkbox-group>
     </el-form-item>
-
     <el-form-item label="上课时间" prop="cth">
       <el-checkbox-group v-model="order.cth">
-        <el-checkbox label="1" name="cth"></el-checkbox>
-        <el-checkbox label="2" name="cth"></el-checkbox>
-        <el-checkbox label="3" name="cth"></el-checkbox>
-        <el-checkbox label="4" name="cth"></el-checkbox>
-        <el-checkbox label="5" name="cth"></el-checkbox>
-        <el-checkbox label="6" name="cth"></el-checkbox>
-        <el-checkbox label="7" name="cth"></el-checkbox>
-        <el-checkbox label="8" name="cth"></el-checkbox>
-        <el-checkbox label="9" name="cth"></el-checkbox>
-        <el-checkbox label="10" name="cth"></el-checkbox>
-        <el-checkbox label="11" name="cth"></el-checkbox>
-        <el-checkbox label="12" name="cth"></el-checkbox>
+        <el-checkbox label="1" name="cth" border></el-checkbox>
+        <el-checkbox label="2" name="cth" border></el-checkbox>
+        <el-checkbox label="3" name="cth" border></el-checkbox>
+        <el-checkbox label="4" name="cth" border></el-checkbox>
+        <el-checkbox label="5" name="cth" border></el-checkbox>
+        <el-checkbox label="6" name="cth" border></el-checkbox>
+        <el-checkbox label="7" name="cth" border></el-checkbox>
+        <el-checkbox label="8" name="cth" border></el-checkbox>
+        <el-checkbox label="9" name="cth" border></el-checkbox>
+        <el-checkbox label="10" name="cth" border></el-checkbox>
+        <el-checkbox label="11" name="cth" border></el-checkbox>
+        <el-checkbox label="12" name="cth" border></el-checkbox>
       </el-checkbox-group>
     </el-form-item>
 
-    <el-form-item label="学生人数" prop="stunum">
+    <!-- <el-form-item label="学生人数" prop="stunum">
       <el-input v-model="order.stunum"></el-input>
-    </el-form-item>
+    </el-form-item> -->
 
     <el-form-item>
       <el-button type="warning" :plain="true" @click="checkorder">
@@ -234,4 +243,39 @@ export default {
 };
 </script>
 
-<style></style>
+<style>
+.el-checkbox-group {
+  width: 100%;
+  text-align: center;
+  display: flex;
+  align-content: flex-start;
+  /* flex-flow: row wrap; */
+  flex-wrap: wrap;
+  justify-content: flex-start;
+}
+.el-checkbox-group .el-checkbox {
+  /* flex: 0 0 10%; */
+  margin-bottom: 20px;
+  margin: 5px;
+  width: 100px;
+}
+.ruleForm {
+  width: 70%;
+  margin: 10px auto;
+}
+.el-form .el-form-item {
+  padding: 0px;
+}
+.elform1 {
+  padding: 0;
+  margin: 0;
+  display: flex;
+  align-content: flex-start;
+  /* flex-flow: row wrap; */
+  flex-wrap: wrap;
+  justify-content: flex-start;
+}
+.elform1 .el-form-item .el-input {
+  width: 150px;
+}
+</style>

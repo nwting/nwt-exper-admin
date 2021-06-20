@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div id="login">
     <el-row>
       <el-col :span="8">
         <el-card shadow="always" class="login-container">
@@ -74,8 +74,24 @@ export default defineComponent({
     #def3f8 100%
   );
 } */
+* {
+  margin: 0;
+  padding: 0;
+}
+#login {
+  background: url("../../assets/login.jpg") no-repeat;
+  background-position: center;
+  height: 100%;
+  width: 100%;
+  background-size: cover;
+  position: fixed;
+  margin: 0;
+  padding: 0;
+}
 .login-container {
-  background: #c5d1eb;
+  background-color: rgba(192, 192, 192, 0.4);
+  margin-top: 100px;
+  border: none;
 }
 .login {
   display: inline-block;

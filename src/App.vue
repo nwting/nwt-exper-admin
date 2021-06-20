@@ -6,12 +6,12 @@
 </template>
 <script lang="ts">
 export default {
-  mounted() {
-    const tmp = document.querySelector("body");
-    if (tmp) {
-      tmp.setAttribute("style", "background-color:#e7f0fd");
-    }
-  },
+  // mounted() {
+  //   const tmp = document.querySelector("body");
+  //   if (tmp) {
+  //     tmp.setAttribute("style", "background-color:#e7f0fd");
+  //   }
+  // },
 };
 </script>
 
@@ -31,9 +31,9 @@ export default {
     #def3f8 100%
   );
 } */
-#nav {
+/* #nav {
   padding: 30px;
-}
+} */
 
 #nav a {
   font-weight: bold;

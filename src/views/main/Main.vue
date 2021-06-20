@@ -6,22 +6,30 @@
     <router-view />
   </div> -->
   <el-container
-    style="height：1000px; border: 1px solid #eee;background-color:#e7f0fd"
+    style="height：1000px; border: 1px solid #eee;background-color:#ecf5ff"
   >
     <el-page-header
       icon="el-icon-arrow-left"
-      style="background-color: #c5d1eb"
+      style="background-color: #8cc5ff"
       @click="goback"
     >
       <!-- <router-link :to="login"></router-link> -->
     </el-page-header>
     <el-header
-      style="text-align: right; font-size: 18px; background-color: #c5d1eb"
+      style="text-align: right; font-size: 18px; background-color: #8cc5ff"
     >
-      <span>{{ role1List.title }}</span>
+      <span class="title">{{ role1List.title }}</span>
+      <el-button
+        circle
+        class="firstpagebutton"
+        @click="towelcome"
+        icon="el-icon-date"
+      >
+        <!-- <router-link :to="welrouter" /> -->
+      </el-button>
     </el-header>
     <el-container>
-      <el-aside width="200px" style="background-color: rgb(238, 241, 246)">
+      <el-aside width="200px" style="background-color: white">
         <sidebar :roleNum="rolenum" />
       </el-aside>
       <el-main>
@@ -35,6 +43,8 @@ import { defineComponent, ref } from "vue";
 import sidebar from "@/views/main/Sidebar.vue";
 import { State } from "@/store";
 import { useStore } from "vuex";
+import { useRouter } from "vue-router";
+import router from "@/router";
 
 export default defineComponent({
   components: { sidebar },
@@ -58,11 +68,17 @@ export default defineComponent({
       return x.rolenum == rolenum.value;
     });
 
+    const welrouter = { path: "/main/:mroleNum" };
+    const router = useRouter();
+    const towelcome = () => {
+      router.push(welrouter);
+    };
     return {
       rolenum,
       role,
       roleList,
       role1List,
+      towelcome,
     };
   },
 });
@@ -70,8 +86,11 @@ export default defineComponent({
 <style>
 @import url("//unpkg.com/element-plus/lib/theme-chalk/index.css");
 .el-header {
-  background-color: #b3c0d1;
+  background-color: #409eff;
   color: #333;
   line-height: 60px;
+}
+.title {
+  margin-right: 10px;
 }
 </style>
