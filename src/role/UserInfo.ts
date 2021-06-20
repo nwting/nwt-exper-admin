@@ -3,7 +3,7 @@ import { Menu, Role, UserInfo } from "./Menu";
 const userinfoList: UserInfo[] = [
   {
     id: "1001",
-    pw: "1",
+    pw: "123456",
     role: "1",
     name: "王老师",
     gender: "男",
@@ -13,7 +13,7 @@ const userinfoList: UserInfo[] = [
   },
   {
     id: "1002",
-    pw: "1",
+    pw: "123456",
     role: "2",
     name: "李老师",
     gender: "女",
