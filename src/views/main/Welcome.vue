@@ -25,7 +25,7 @@
 </template>
 <script lang="ts">
 import { State } from "@/store";
-import { defineComponent } from "vue";
+import { defineComponent, ref } from "vue";
 import { useStore } from "vuex";
 
 export default defineComponent({
@@ -93,12 +93,13 @@ export default defineComponent({
     ];
     var grids = props.mroleNum == "1" ? grids1 : grids2;
     console.log(role1List?.title);
+    const value = ref(new Date());
     return {
       role1List,
       user,
       imgslist: [],
       grids,
-      value: new Date(),
+      value,
     };
   },
 });
